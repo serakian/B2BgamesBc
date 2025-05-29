@@ -2,113 +2,118 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import Carousel from "./Carousel";
 import './styling/getgame.css'
 
+const GetGames = () => {
+  // create hooks that will help manage different states
+  const [loading, setLoading] = useState("")
+  const [error, setError] = useState("")
+  const navigate = useNavigate();
 
-const Getproducts = () => {
+  // Create a hook that will hold all the games fetched from the API
+  const [games, setGames] = useState([]);
 
-// create hooks that will help manage different states
-const [loading, setLoading] = useState("")
-const [error, setError] = useState("")
- 
+  // Specify the image URL
+  const img_url = "https://serakian.pythonanywhere.com/static/images/"
 
-const navigate = useNavigate();
+  // Create a function that will help you fetch the different games
+  const fetchGames = async () => {
+    // Update the loading hook with a message
+    setLoading("Loading game catalog...")
 
-// Create a hook that will hold all the products fetched from the API
-const [products, setProducts] = useState([]);
+    try {
+      // Access the Api using the axios library
+      const response = await axios.get("https://serakian.pythonanywhere.com/api/getproducts")
+      
+      // Update the games hook with the different games fetched from the api
+      setGames(response.data)
+      // set the loading hook back to default
+      setLoading("")
+    }
+    catch(error) {
+      // set the loading hook back to default
+      setLoading("")
+      setError("Failed to load games. Please try again later.");
+    }
+  }
 
-// console.log(products)
+  // Below we shall use the use effect hook that will call the fetchGames functions every time a person accesses the component
+  useEffect(() => {fetchGames()}, [])
 
-// Specify the image URL
-const img_url = "https://serakian.pythonanywhere.com/static/images/"
+  // create a hook that hold those games that matches whatever the user will be typing...
+  const [search, setSearch] = useState("");
 
-// Create a function that will help you fetch the different products
-const fetchProducts = async () =>{
-// Update the loading hook with a message
-setLoading("Please wait as we retrieve the products")
+  const filtered_games = games.filter((item) =>
+      item.product_name.toLowerCase().includes(search.toLowerCase()) ||
+      item.product_description.toLowerCase().includes(search.toLowerCase())
+  );
 
-try{
-// Access the Api using the axios library
-const response = await axios.get("https://serakian.pythonanywhere.com/api/getproducts")
-
-// Update the products hook with the different products fetchedfrom the api
-setProducts(response.data)
-// set the loading hook back to dsefault
-setLoading("")
-
-//
-
-}
-catch(error){
-// set the loading hook back to dsefault
-setLoading("")
-setError(error.message);
-}
-}
-
-// Below we shall use the use effect hook that will call the fetchproducts functions every time a person access the getproducts component
-useEffect(() =>{fetchProducts()}, [])
-
-// create a hook that hold those products that matches whatever the user will be typing...
-const [search, setSearch] = useState("");
-
-const filtered_products = products.filter((item) =>
-    item.product_name.toLowerCase().includes(search.toLowerCase()) ||
-    item.product_description.toLowerCase().includes(search.toLowerCase())
-
-);
+  <Carousel/>
 
 
 
-return (
-    <div>
-        <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-                {/* below is the input for the search functionality */}
-<input 
-type="search"
-placeholder="search for a product here"
-className="form-control"
-value={search}
-onChange={(e) => setSearch(e.target.value)} />
-{/* {search} */}
+  return (
+    <div className="game-listing-container">
+      <div className="search-container">
+        <input 
+          type="search"
+          placeholder="Search for a game..."
+          className="game-search-input"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)} 
+        />
+      </div>
+
+      <div className="game-listing-header">
+        <h2>GAME CATALOG</h2>
+        <div className="header-decoration"></div>
+      </div>
+
+      <div className="status-messages">
+        {loading && <div className="loading-message">{loading}</div>}
+        {error && <div className="error-message">{error}</div>}
+      </div>
+
+      <div className="game-grid">
+        {filtered_games.map((game) => (
+          <div className="game-card" key={game.id}>
+            <div className="game-card-inner">
+              <div className="game-card-front">
+                <img 
+                  src={img_url + game.product_photo} 
+                  alt={game.product_name} 
+                  className="game-cover" 
+                />
+                <div className="game-platform-tag">PC</div>
+              </div>
+              
+              <div className="game-card-back">
+                <h3>{game.product_name}</h3>
+                <p className="game-description">
+                  {game.product_description.length > 100 
+                    ? `${game.product_description.substring(0, 100)}...` 
+                    : game.product_description}
+                </p>
+                <div className="game-price">
+                  <span className="price-currency">ksh</span>
+                  <span className="price-amount">{game.product_cost}</span>
+                </div>
+                <div className="game-rating">★★★★☆</div>
+                <button 
+                  className="buy-now-btn"
+                  onClick={() => navigate("/makepayment", {state: {product: game}})}
+                >
+                  BUY NOW
+                </button>
+              </div>
             </div>
-            <div className="col-md-4"></div>
-        </div>
-        <div className="row p-3">
-<h3 className="text-info mt-2">Available Products</h3>
-
-
-
-<h2 className="text-success">{loading}</h2>
-<h2 className="text-danger">{error}</h2>
-
-
-{filtered_products.map((product)=>(
-
-<div className="col-md-3 justify-content-center mt-4">
-<div className="card shadow p-1">
-<img src={img_url + product.product_photo} alt="" className="product_img" />
-
-{/* {product.product_photo} */}
-
-{/* Product details */}
-<div className="card-body">
-<h5 className="text-primary">{product.product_name.slice(0,10)}</h5>
-<p className="text-muted">{product.product_description.slice(0,10)}....</p>
-<b className="text-warning"> <span className="text-dark">Kes </span>{product.product_cost}</b> <br />
-<button className="btn btn-outline-info" onClick={() => navigate("/makepayment",{state : {product}})} > Buy Now</button>
-</div>
-</div>
-</div>  
-))}
-
-</div>
-<Footer/>
+          </div>
+        ))}
+      </div>
+      <Footer/>
     </div>
-
-)
+  )
 }
 
-export default Getproducts
+export default GetGames;

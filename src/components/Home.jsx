@@ -19,7 +19,7 @@ const GamingHome = () => {
     {
       title: "TOURNAMENTS",
       desc: "Join competitive events with huge prizes",
-      bg: "url('https://via.placeholder.com/1920x1080/222/ff0000')"
+      bg: "url('public/images/gaming-pictures-j9vcj2frv3ms9ais.webp')"
     },
     {
       title: "EXCLUSIVE CONTENT",

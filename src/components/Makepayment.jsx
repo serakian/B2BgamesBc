@@ -1,105 +1,133 @@
 import axios from "axios";
 import { useState } from "react";
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
+import './styling/makepayment.css';
 
-const Makepayment = () => {
-
-  // we can use the uselocation hook to get the details that have been passed from the get products component
-  const {product} = useLocation().state || {};
+const GamePayment = () => {
+  // Get the game details passed from the previous component
+  const { product } = useLocation().state || {};
 
   const [phone, setPhone] = useState("");
-  // const [cost, setcost] = useState("");
-
-  // initialize three additional hooks to help you manage the state of your application
   const [loading, setLoading] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
-  // implement the function that will handle the pay now activity
-  const payNow = async (e) =>{
-    // prevent the site from reloading
-    e.preventDefault()
+  // Function to handle the payment process
+  const processPayment = async (e) => {
+    e.preventDefault();
+    
+    // Validate phone number
+    if (!phone.startsWith('254') || phone.length !== 12) {
+      setError("Please enter a valid M-Pesa number in format 254XXXXXXXXX");
+      return;
+    }
 
-    // set the loading hook with a message
-    try{
-      // create a new form data object
-      const data = new FormData()
+    setLoading("Processing your payment...");
+    setError("");
+    setSuccess("");
 
-      // append the two details into the form data created
-      data.append("amount", product.product_cost)
-      data.append("phone", phone)
+    try {
+      const paymentData = new FormData();
+      paymentData.append("amount", product.product_cost);
+      paymentData.append("phone", phone);
 
-      // access the post function in axios
-      const response = await axios.post("https://serekian.pythonanywhere.com/api/mpesa_payment", data)
+      const response = await axios.post(
+        "https://serekian.pythonanywhere.com/api/mpesa_payment", 
+        paymentData
+      );
 
-      // set the loading hook back to default
       setLoading("");
-
-      // update the success hook with the response from the api
-      setSuccess(response.data.message)
-
-      // clear the phone number hook
+      setSuccess(response.data.message || "Payment initiated successfully! Check your phone to complete.");
       setPhone("");
-      
-    }
-    catch(error){
-      // set the loading hook back to default
+    } catch (error) {
       setLoading("");
-
-      // update the error hook with the error response
-      setError(error.message)
+      setError(error.response?.data?.message || "Payment failed. Please try again.");
     }
-  }
+  };
 
-  // console.log(product)
-  // specify the image url
-  const img_url = "https://SERAKIAN.pythonanywhere.com/static/images/"
+  const img_url = "https://SERAKIAN.pythonanywhere.com/static/images/";
 
   return (
-    <div className="row mt-4 p-3">
-      <div className="col-md-6">
-        <div className="card shadow">
-          <div className="card-body">
+    <div className="game-payment-container">
+      <div className="game-payment-header">
+        <h1>CHECKOUT</h1>
+        <div className="header-decoration"></div>
+      </div>
 
-            <img src={img_url + product.product_photo} alt="" className="w-50 product_img"/>
-
-            <h3 className="text-info">{product.product_name}</h3>
+      <div className="game-payment-content">
+        <div className="game-details-section">
+          <div className="game-cover-container">
+            <img 
+              src={img_url + product.product_photo} 
+              alt={product.product_name} 
+              className="game-cover"
+            />
+            <div className="game-platform-badge">DIGITAL</div>
+          </div>
+          
+          <div className="game-info">
+            <h2 className="game-title">{product.product_name}</h2>
+            <p className="game-description">{product.product_description}</p>
+            <div className="game-metadata">
+              <span className="game-genre">Action</span>
+              <span className="game-rating">★★★★☆</span>
+            </div>
           </div>
         </div>
-      </div> 
 
-        <div className="col md 6">
-          <h1 className="text-info"> Kes {product.product_cost} </h1>
-          <p className="text-dark"> {product.product_description} </p>
-          <h5 className="text-success"> LIPA NA M-PESA</h5>
+        <div className="payment-section">
+          <div className="price-display">
+            <span className="price-currency">$</span>
+            <span className="price-amount">{product.product_cost}</span>
+          </div>
 
-          <form className="card-shadow p-4" onSubmit={payNow}>
+          <form onSubmit={processPayment} className="payment-form">
+            <div className="status-messages">
+              {loading && <div className="loading-message">{loading}</div>}
+              {success && <div className="success-message">{success}</div>}
+              {error && <div className="error-message">{error}</div>}
+            </div>
 
-          <b className="text-success">{loading}</b>
-          <b className="text-success">{success}</b>
-          <b className="text-danger">{error}</b>
+            <div className="form-group">
+              <label htmlFor="amount">Amount</label>
+              <input 
+                type="text" 
+                id="amount"
+                value={product.product_cost}
+                readOnly
+                className="amount-input"
+              />
+            </div>
 
-            <input 
-            type="number" 
-            value={product.product_cost}
-            readOnly
-            className="form-control"/> <br />
+            <div className="form-group">
+              <label htmlFor="phone">M-Pesa Number (254XXXXXXXXX)</label>
+              <input 
+                type="tel"
+                id="phone"
+                placeholder="254XXXXXXXXX"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="phone-input"
+                required
+              />
+            </div>
 
-            <input type="number"
-            placeholder="enter the phone numnber +254*********" 
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="form-control"/> <br /> <br />
+            <button type="submit" className="pay-now-btn">
+              COMPLETE PURCHASE
+            </button>
 
-            {/* {phone} */}
-
-            <button className="btn btn-success">Pay Now</button>
+            <div className="payment-method">
+              <div className="mpesa-logo"></div>
+              <span>Lipa na M-Pesa</span>
+            </div>
           </form>
         </div>
-        <Footer/>
+      </div>
+      
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Makepayment
+export default GamePayment;
