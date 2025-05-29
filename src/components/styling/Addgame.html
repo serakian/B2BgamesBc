@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Submission Form</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Submit Your Game</h1>
+        <form id="gameForm" action="/submit-game" method="POST">
+            <div class="form-group">
+                <label for="gameName">Game Name:</label>
+                <input type="text" id="gameName" name="gameName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="developer">Developer Name/Studio:</label>
+                <input type="text" id="developer" name="developer" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Contact Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gameUrl">Game URL (if available):</label>
+                <input type="url" id="gameUrl" name="gameUrl">
+            </div>
+            
+            <div class="form-group">
+                <label for="gameDescription">Game Description:</label>
+                <textarea id="gameDescription" name="gameDescription" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="gameGenre">Genre:</label>
+                <select id="gameGenre" name="gameGenre" required>
+                    <option value="">Select a genre</option>
+                    <option value="action">Action</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="puzzle">Puzzle</option>
+                    <option value="rpg">RPG</option>
+                    <option value="simulation">Simulation</option>
+                    <option value="strategy">Strategy</option>
+                    <option value="sports">Sports</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="platforms">Platforms:</label>
+                <div>
+                    <input type="checkbox" id="windows" name="platforms" value="windows">
+                    <label for="windows" style="display: inline;">Windows</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="mac" name="platforms" value="mac">
+                    <label for="mac" style="display: inline;">Mac</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="linux" name="platforms" value="linux">
+                    <label for="linux" style="display: inline;">Linux</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="android" name="platforms" value="android">
+                    <label for="android" style="display: inline;">Android</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="ios" name="platforms" value="ios">
+                    <label for="ios" style="display: inline;">iOS</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="web" name="platforms" value="web">
+                    <label for="web" style="display: inline;">Web</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="releaseDate">Release Date (or expected release):</label>
+                <input type="date" id="releaseDate" name="releaseDate">
+            </div>
+            
+            <div class="form-group">
+                <label for="screenshots">Screenshots (max 3):</label>
+                <input type="file" id="screenshots" name="screenshots" multiple accept="image/*">
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" class="submit-btn" value="Submit Game">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
