@@ -1,0 +1,354 @@
+/* Navbar Container */
+.luxe-navbar {
+  background-color: #121212;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ff0000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.luxe-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Brand/Logo */
+.luxe-nav-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.luxe-nav-brand span {
+  color: #ff0000;
+}
+
+.luxe-nav-icon {
+  margin-right: 0.5rem;
+  color: #ff0000;
+  font-size: 1.3rem;
+}
+
+/* Navigation Links */
+.luxe-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.luxe-nav-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.luxe-nav-link:hover {
+  color: #ff0000;
+}
+
+.luxe-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ff0000;
+  transition: width 0.3s ease;
+}
+
+.luxe-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Dropdown Menu */
+.luxe-nav-dropdown {
+  position: relative;
+}
+
+.luxe-dropdown-btn {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0;
+}
+
+.luxe-dropdown-btn:hover {
+  color: #ff0000;
+}
+
+.luxe-chevron {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.luxe-chevron.open {
+  transform: rotate(180deg);
+}
+
+.luxe-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1e1e1e;
+  border: 1px solid #ff0000;
+  border-radius: 0 0 8px 8px;
+  min-width: 200px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.luxe-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.luxe-dropdown-item:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.luxe-genre-icon {
+  font-size: 1.2rem;
+}
+
+/* Right Side Container */
+.luxe-nav-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Icon Buttons */
+.luxe-nav-icon-btn {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.luxe-nav-icon-btn:hover {
+  color: #ff0000;
+}
+
+.luxe-cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff0000;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Auth Buttons */
+.luxe-auth-buttons {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.luxe-signin-btn,
+.luxe-signup-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.luxe-signin-btn {
+  background-color: transparent;
+  color: #e0e0e0;
+  border: 1px solid #ff0000;
+}
+
+.luxe-signin-btn:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #fff;
+}
+
+.luxe-signup-btn {
+  background-color: #ff0000;
+  color: white;
+  border: 1px solid #ff0000;
+}
+
+.luxe-signup-btn:hover {
+  background-color: #cc0000;
+}
+
+.luxe-btn-icon {
+  font-size: 1rem;
+}
+
+/* User Menu */
+.luxe-user-menu {
+  position: relative;
+}
+
+.luxe-user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #1e1e1e;
+  border: 1px solid #ff0000;
+  border-radius: 0 0 8px 8px;
+  min-width: 180px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mobile Menu Button */
+.luxe-mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  z-index: 100;
+}
+
+.luxe-mobile-menu-btn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.luxe-mobile-menu-btn span:nth-child(1).open {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.luxe-mobile-menu-btn span:nth-child(2).open {
+  opacity: 0;
+}
+
+.luxe-mobile-menu-btn span:nth-child(3).open {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .luxe-nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: #121212;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: right 0.3s ease;
+    border-left: 1px solid #ff0000;
+  }
+
+  .luxe-nav-links.open {
+    right: 0;
+  }
+
+  .luxe-nav-dropdown {
+    text-align: center;
+  }
+
+  .luxe-dropdown-content {
+    position: static;
+    border: none;
+    box-shadow: none;
+    display: none;
+  }
+
+  .luxe-nav-dropdown:hover .luxe-dropdown-content {
+    display: block;
+  }
+
+  .luxe-user-dropdown {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .luxe-auth-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .luxe-signin-btn,
+  .luxe-signup-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .luxe-mobile-menu-btn {
+    display: flex;
+  }
+}
+
+@media (max-width: 576px) {
+  .luxe-navbar {
+    padding: 1rem;
+  }
+
+  .luxe-nav-brand {
+    font-size: 1.3rem;
+  }
+
+  .luxe-nav-right {
+    gap: 0.5rem;
+  }
+}

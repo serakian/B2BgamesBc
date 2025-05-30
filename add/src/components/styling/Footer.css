@@ -1,0 +1,133 @@
+/* Footer Container */
+.luxe-footer-container {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    padding: 2rem 0 0;
+    margin-top: 3rem;
+}
+
+/* Footer Content */
+.luxe-footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.luxe-footer-section {
+    flex: 1;
+    min-width: 300px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Footer Headings */
+.luxe-footer-heading {
+    color: #ff0000;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #ff0000;
+    padding-bottom: 0.5rem;
+}
+
+/* Footer Text */
+.luxe-footer-text {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Form Elements */
+.luxe-footer-input,
+.luxe-footer-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.luxe-footer-input:focus,
+.luxe-footer-textarea:focus {
+    outline: none;
+    border-color: #ff0000;
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+.luxe-footer-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Button */
+.luxe-footer-button {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.luxe-footer-button:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+/* Social Icons */
+.luxe-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.luxe-social-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.luxe-social-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Bottom Footer */
+.luxe-footer-bottom {
+    background-color: #000;
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #ff0000;
+}
+
+.luxe-footer-copyright {
+    color: #ff0000;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .luxe-footer-section {
+        min-width: 100%;
+    }
+    
+    .luxe-footer-content {
+        flex-direction: column;
+    }
+}

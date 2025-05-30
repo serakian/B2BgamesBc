@@ -1,0 +1,147 @@
+/* Main Container */
+.luxe-container {
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 2rem;
+  color: #e0e0e0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Form Containers */
+.luxe-form-container,
+.luxe-addproduct-card {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+  border: 1px solid #ff0000;
+}
+
+/* Titles */
+.luxe-form-title,
+.luxe-addproduct-title {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Status Messages */
+.luxe-status-messages {
+  margin-bottom: 1.5rem;
+}
+
+.luxe-loading {
+  color: #ff9900;
+  text-align: center;
+}
+
+.luxe-success {
+  color: #00ff00;
+  text-align: center;
+}
+
+.luxe-error {
+  color: #ff0000;
+  text-align: center;
+}
+
+/* Form Groups */
+.luxe-form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Input Fields */
+.luxe-form-input,
+.luxe-form-textarea,
+.luxe-form-select {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #e0e0e0;
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.luxe-form-input:focus,
+.luxe-form-textarea:focus,
+.luxe-form-select:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+.luxe-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Checkbox Group */
+.luxe-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.luxe-checkbox-item {
+  display: flex;
+  align-items: center;
+}
+
+.luxe-checkbox-input {
+  margin-right: 0.5rem;
+}
+
+.luxe-checkbox-label {
+  color: #e0e0e0;
+}
+
+/* File Inputs */
+.luxe-file-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.luxe-file-input {
+  width: 100%;
+  color: #e0e0e0;
+  padding: 0.5rem;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
+
+/* Submit Buttons */
+.luxe-submit-btn {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.luxe-submit-btn:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.luxe-submit-btn:active {
+  transform: translateY(0);
+}
